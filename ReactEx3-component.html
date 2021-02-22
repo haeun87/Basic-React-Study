@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ReactEx3 - component </title>
+        <!-- 제 4장 순수 리액트 -->
+    </head>
+    <body>
+        <!-- react container -->
+        <div id="react-container"></div>
+        <!-- React와 ReactDOM 라이브러리 -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script>
+            /*
+                React Component
+                - react component는 객체이므로 createClass나 추상 클래스로 작성하여 사용 가능하다.
+                - 가장 추천하는 방식은 함수형 컴포넌트로 작성하는 방식이다.
+            */
+
+            // react부
+            const domContainer = document.getElementById('react-container');
+            
+            // 항목으로 사용할 Array
+            let items = [
+                '연어 500그램',
+                '잣 1컵',
+                '버터 상추 2컵',
+                '엘로 스쿼시 1개',
+                '올리브 오리 1/2컵',
+                '마늘 3쪽'
+            ];
+
+            /* 
+                1방식: createClass 함수 사용(비추천)
+                필요한 라이브러리 : create-react-class (npm install create-react-class)
+            */
+           
+            // const IngredientsList1 = React.createClass({
+            //     displayName: 'IngredientsList1',
+            //     render(){
+            //         return React.createElement(
+            //                 'ul', 
+            //                 {className: 'ingredients'},
+            //                 this.props.items.map( (ingredient, i) => React.createElement('li', {key: i}, ingredient )
+            //             )
+            //         )
+            //     }
+            // }); 
+
+
+            /*
+                2방식: react.component를 상속받는 클래스로 선언하여 사용
+                React.Component를 추상 클래스로 사용 가능함
+            */
+            class IngredientsList2 extends React.Component {
+                renderListItem(ingredient, i){
+                    return React.createElement('li', {key: i}, ingredient);
+                };
+
+                render(){
+                        return React.createElement('ul', {className: 'ingredients'}, 
+                        this.props.items.map(this.renderListItem)
+                    )
+                };
+            };
+
+            /*
+                3방식: 상태가 없는 함수형 컴포넌트로 작성하여 사용(추천)
+                - 외부변수에 영향을 주지 않는 순수함수 형태로 작성하도록 할 것!
+                - 외부 변수 값에 영향을 안 준다는 원칙을 위하여 선언을 const로 하여 수정 여부를 검증하는 것이 좋다.
+                - class 선언보다 효율적이고 빠른 출력을 보장하는 방식 
+            */
+           const IngredientsList3 = props => 
+                    React.createElement('ul', {className: 'ingredients'},
+                    props.items.map(( ingredient, i ) => 
+                        React.createElement('li', {key: i}, ingredient)
+                )
+            ) 
+            // 실제로 화면에 렌더링함
+            ReactDOM.render(
+                // React.createElement(IngredientsList1, {items}, null),
+                // React.createElement(IngredientsList2, {items}, null),
+                React.createElement(IngredientsList3, {items}, null),
+                domContainer
+            );
+            
+        </script>
+    </body>
+
+    
+</html>

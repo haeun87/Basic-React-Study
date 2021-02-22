@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ReactEx4 - rendering </title>
+        <!-- 제 4장 순수 리액트 -->
+    </head>
+    <body>
+        <!-- react container -->
+        <div id="react-container"></div>
+        <!-- React와 ReactDOM 라이브러리 -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script>
+            /*
+                React Rendering
+                - React Rendering은 Dom을 효율적으로 수정할 수 있는 방식으로 수행된다.
+                - 아래 예제의 경우 변경됭 data만 수정하여 랜더링함을 확인할 수 있다.
+            */
+
+            // react부
+            const domContainer = document.getElementById('react-container');
+            
+            // 항목으로 사용할 Array
+            let emotions = [
+                'smaile',
+                'smaile',
+                'frown',
+                'smaile',
+                'frown'
+            ];
+
+            /* 
+                1방식: createClass 함수 사용(비추천)
+                필요한 라이브러리 : create-react-class (npm install create-react-class)
+            */
+           
+           const emotionList = props => 
+                    React.createElement('ul', {className: 'emotionList'},
+                    props.emotions.map(( emotion, i ) => 
+                        React.createElement('li', {className: emotion, key: i}, emotion)
+                )
+            ) 
+            // 실제로 화면에 렌더링함
+            ReactDOM.render(
+                React.createElement(emotionList, {emotions}, null),
+                domContainer
+            );
+
+            // 수정된 항목으로 사용할 Array
+            emotions = [
+                'frown',
+                'frown',
+                'frown',
+                'frown',
+                'frown'
+            ];
+
+            // 2초 후 재랜더링
+            setTimeout(()=>{
+                // 실제로 화면에 렌더링함
+                ReactDOM.render(
+                    React.createElement(emotionList, {emotions}, null),
+                    domContainer
+                );
+            }, 2000);
+
+            
+        </script>
+    </body>
+
+    
+</html>
