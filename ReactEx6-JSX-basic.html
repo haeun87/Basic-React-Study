@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ReactEx6 - JSX - basic </title>
+        <!-- 제 5장 JSX를 사용하는 리액트 -->
+    </head>
+    <body>
+        <!-- react container -->
+        <div id="react-container"></div>
+        <!-- React와 ReactDOM 라이브러리 -->
+        <!-- 종전 코드와 달리 type의 명시를 명시적으로 해야 함(default가 text/javascript이므로) -->
+        <!-- react developer tool을 활성화하기 위해서는 CDN도 production mode로 import 해야 한다. -->
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+            /*
+                JSX basic
+                - JSX를 사용하면 createElement보다 훨씬 직관적인 방식으로 표현가능하다.
+                - 기존 순수 react와 달리 JSX 및 최신 자바스크립트 지원이 가능하도록 만들기 위하여 babel이 필요하다.
+            */
+
+            // react부
+            const domContainer = document.getElementById('react-container');
+            
+            // 랜더링 대상이 되는 데이터
+            const data = [
+                {
+                    'name': 'Baked Salmon',
+                    'ingredients': [
+                        {'name': '연어', 'amount': 500, 'measurement': '그램'},
+                        {'name': '잣','amount': 1, 'measurement': '컵'},
+                        {'name':'버터 상추', 'amount': 2, 'measurement': '컵'},
+                        {'name':'옐로 스쿼시', 'amount': 1, 'measurement': '개'},
+                        {'name':'올리브 오일', 'amount': 0.5, 'measurement': '컵'},
+                        {'name':'마늘', 'amount': 3, 'measurement': '쪽'}
+                    ],
+                    'steps': [
+                        '오블을 350도로 예열한다.',
+                        '유리 베이킹 그릇에 올리브 오일을 두른다.',
+                        '연어, 마늘, 잣을 그릇에 담는다.',
+                        '오븐에서 15분간 익힌다.',
+                        '옐로 스쿼시를 추가하고 다시 30분간 오븐에서 익힌다.',
+                        '오븐에서 그릇을 꺼내서 15분간 식힌 다음 상추를 곁들여서 내놓는다.'
+                    ]
+                },
+                {
+                    'name': '생선 타코',
+                    'ingredients': [
+                        {'name': '흰살생선', 'amount': 500, 'measurement': '그램'},
+                        {'name': '치즈', 'amount': 1, 'measurement':'컵'},
+                        {'name': '아이스버그 상추', 'amount': 2, 'measurement': '컵'},
+                        {'name': '토마토', 'amount': 2, 'measurement': '개(큰 것)'},
+                        {'name': '또띠야', 'amount': 3, 'measurement': '개'}
+                    ],
+                    'steps': [
+                        '생선을 그릴에 익힌다.',
+                        '또띠야 3장 위에 생선을 얹는다.',
+                        '또띠야 얹은 생선 위에 상추, 토마토, 치즈를 얹는다.'
+                    ]
+                }
+            ];
+
+            const Recipe = ({name, ingredients, steps}) => 
+            <section id={name.toLowerCase().replace(/ /g,'-')}>
+                <h1>{name}</h1>
+                <ul className="ingredients">
+                    {ingredients.map((ingredient, i) => 
+                        <li key={i}>{ingredient.name}</li>
+                    )}
+                </ul>
+                <section className="instructions">
+                    {steps.map((step, i) =>
+                        <p key={i}>{step}</p>    
+                    )}
+                </section> 
+            </section>
+
+            const Menu = ({title, recipes}) => 
+                <article>
+                    <header>
+                        <h1>{title}</h1>
+                    </header>
+                    <div className="recipes">
+                        {recipes.map((recipe, i) => 
+                            <Recipe key={i} {...recipe}/>    
+                        )}
+                    </div>
+                </article>
+
+            ReactDOM.render(
+                <Menu recipes={data} title="맛있는 조리법" />,
+                domContainer
+            );
+            
+        </script>
+    </body>
+
+    
+</html>

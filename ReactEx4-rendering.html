@@ -29,18 +29,14 @@
                 'smaile',
                 'frown'
             ];
-
-            /* 
-                1방식: createClass 함수 사용(비추천)
-                필요한 라이브러리 : create-react-class (npm install create-react-class)
-            */
            
            const emotionList = props => 
                     React.createElement('ul', {className: 'emotionList'},
                     props.emotions.map(( emotion, i ) => 
                         React.createElement('li', {className: emotion, key: i}, emotion)
                 )
-            ) 
+            );
+             
             // 실제로 화면에 렌더링함
             ReactDOM.render(
                 React.createElement(emotionList, {emotions}, null),
