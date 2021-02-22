@@ -10,8 +10,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "webpack": "webpack"
   },
   "eslintConfig": {
     "extends": [
@@ -36,6 +35,13 @@
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-stage-0": "^7.8.3",
-    "bable-loader": "0.0.1-security"
+    "bable-loader": "0.0.1-security",
+    "css-loader": "^5.0.2",
+    "opener": "^1.5.2",
+    "postcss-loader": "^5.0.0",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.23.0",
+    "webpack-cli": "^4.5.0"
   }
 }
