@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ProtoTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 // Type 1. class 형태로 선언
 class Summary1 extends Component {
 
   static protoType =  {// 입력 데이터를 검증함
-    ingredients: ProtoTypes.number.isRequired, // DataType과 누락 여부를 함께 검증함
-    steps: ProtoTypes.number.isRequired,
+    ingredients: PropTypes.number.isRequired, // DataType과 누락 여부를 함께 검증함
+    steps: PropTypes.number.isRequired,
     title: (props, propName) => // 조건 검증도 가능함
       (typeof props[propName] !== 'string') ?
         new Error('제목(title)은 문자열이어야 합니다.') :
