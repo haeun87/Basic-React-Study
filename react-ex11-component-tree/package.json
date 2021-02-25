@@ -1,12 +1,14 @@
 {
-  "name": "react-ex8-property",
+  "name": "react-ex11-component-tree",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "httpster": "^1.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.2"
+    "react-scripts": "4.0.3",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +30,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^5.0.2",
+    "node-sass": "^5.0.0",
+    "opener": "^1.5.2",
+    "postcss-loader": "^5.0.0",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.24.2"
   }
 }
